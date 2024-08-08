@@ -9,8 +9,7 @@ productos = [
 ]
 carrito=[]
 def menu(productos):
-    opc=''
-    vol_agregar="si"
+    opc=""
     while opc!="6":
         os.system("cls")
         print('''
@@ -33,13 +32,12 @@ def menu(productos):
                 precio_tot = 50 * cantidad
                 agregar_al_carrito (id,productos,cantidad,precio_tot)
                 vol_agregar = input("¿Quieres ordenar algo mas? ")
-                while vol_agregar == "si":
-                    menu(productos)
-                if vol_agregar != "si":
+                if vol_agregar == "si":
+                        menu(productos)
+                elif vol_agregar != "si":
                     opc="6"
                     mostrar_carrito(carrito)
                     print ("Adios")
-                    input()
         elif opc=="2": 
             id=2
             cantidad = int(input("Cuantas lbs de habichuelas quieres: "))
@@ -50,13 +48,12 @@ def menu(productos):
                 precio_tot = 80 * cantidad
                 agregar_al_carrito (id,productos,cantidad,precio_tot)
                 vol_agregar = input("¿Quieres ordenar algo mas? ")
-                while vol_agregar == "si":
+                if vol_agregar == "si":
                     menu(productos)
-                if vol_agregar != "si":
+                elif vol_agregar != "si":
                     opc="6"
                     mostrar_carrito(carrito)
                     print ("Adios")
-                    input()
         elif opc=="3":  
             id=3
             cantidad = int(input("Cuantas lbs de aceite quieres: "))
@@ -67,13 +64,12 @@ def menu(productos):
                 precio_tot = 300 * cantidad
                 agregar_al_carrito (id,productos,cantidad,precio_tot)
                 vol_agregar = input("¿Quieres ordenar algo mas? ")
-                while vol_agregar == "si":
+                if vol_agregar == "si":
                     menu(productos)
-                if vol_agregar != "si":
+                elif vol_agregar != "si":
                     opc="6"
                     mostrar_carrito(carrito)
                     print ("Adios")
-                    input()
         elif opc=="4":
             id=4
             cantidad = int(input("Cuantas lbs de pollo quieres: "))
@@ -84,13 +80,12 @@ def menu(productos):
                 precio_tot = 85 * cantidad
                 agregar_al_carrito (id,productos,cantidad,precio_tot)
                 vol_agregar = input("¿Quieres ordenar algo mas? ")
-                while vol_agregar == "si":
+                if vol_agregar == "si":
                     menu(productos)
-                if vol_agregar != "si":
+                elif vol_agregar != "si":
                     opc="6"
                     mostrar_carrito(carrito)
                     print ("Adios")
-                    input()
         elif opc=="5":
             id=5
             cantidad = int(input("Cuantas lbs de lechuga quieres: "))
@@ -101,17 +96,14 @@ def menu(productos):
                 precio_tot = 80 * cantidad
                 agregar_al_carrito (id,productos,cantidad,precio_tot)
                 vol_agregar = input("¿Quieres ordenar algo mas? ")
-                while vol_agregar == "si":
+                if vol_agregar == "si":
                     menu(productos)
-                if vol_agregar != "si":
-                    opc="6"
-                    mostrar_carrito(carrito)
-                    print ("Adios")
-                    input()
+                    if opc=="6":
+                        mostrar_carrito(carrito)
+                        print ("Adios")
         elif opc=="6":
             mostrar_carrito(carrito)
-            print ("Adios")
-            input()
+            print("Adios")
         else:
             id=int(opc)
             producto=buscar_producto(id,productos)
@@ -123,8 +115,8 @@ def buscar_producto(id, productos):
     for producto in productos:
         if producto['id']==int(id):
             return producto
-    return None
-
+        return None
+        
 def agregar_al_carrito (id,productos,cantidad,precio_tot):
     if id == 1:
             carrito.append({"id": 1,"producto":"arroz","precio":50,"cantidad":cantidad,"precio total":precio_tot})
@@ -153,4 +145,5 @@ def mostrar_carrito (carrito):
     print ("Su subtotal fue de:",subtotal)
     print ("El precio final fue de:",total," con: ",impuesto," de impuesto")
     print("----------------------------") 
-print(menu(productos))
+
+menu(productos)
